@@ -30,24 +30,24 @@ sockets = Sockets(app)
 global nerfreal
 
     
-@sockets.route('/humanecho')
-def echo_socket(ws):
-    # 获取WebSocket对象
-    #ws = request.environ.get('wsgi.websocket')
-    # 如果没有获取到，返回错误信息
-    if not ws:
-        print('未建立连接！')
-        return 'Please use WebSocket'
-    # 否则，循环接收和发送消息
-    else:
-        print('建立连接！')
-        while True:
-            message = ws.receive()           
+# @sockets.route('/humanecho')
+# def echo_socket(ws):
+#     # 获取WebSocket对象
+#     #ws = request.environ.get('wsgi.websocket')
+#     # 如果没有获取到，返回错误信息
+#     if not ws:
+#         print('未建立连接！')
+#         return 'Please use WebSocket'
+#     # 否则，循环接收和发送消息
+#     else:
+#         print('建立连接！')
+#         while True:
+#             message = ws.receive()           
             
-            if not message or len(message)==0:
-                return '输入信息为空'
-            else:                                
-                nerfreal.put_msg_txt(message)
+#             if not message or len(message)==0:
+#                 return '输入信息为空'
+#             else:                                
+#                 nerfreal.put_msg_txt(message)
 
 
 def llm_response(message):
@@ -59,25 +59,25 @@ def llm_response(message):
     print(response)
     return response
 
-@sockets.route('/humanchat')
-def chat_socket(ws):
-    # 获取WebSocket对象
-    #ws = request.environ.get('wsgi.websocket')
-    # 如果没有获取到，返回错误信息
-    if not ws:
-        print('未建立连接！')
-        return 'Please use WebSocket'
-    # 否则，循环接收和发送消息
-    else:
-        print('建立连接！')
-        while True:
-            message = ws.receive()           
+# @sockets.route('/humanchat')
+# def chat_socket(ws):
+#     # 获取WebSocket对象
+#     #ws = request.environ.get('wsgi.websocket')
+#     # 如果没有获取到，返回错误信息
+#     if not ws:
+#         print('未建立连接！')
+#         return 'Please use WebSocket'
+#     # 否则，循环接收和发送消息
+#     else:
+#         print('建立连接！')
+#         while True:
+#             message = ws.receive()           
             
-            if len(message)==0:
-                return '输入信息为空'
-            else:
-                res=llm_response(message)                           
-                nerfreal.put_msg_txt(res)
+#             if len(message)==0:
+#                 return '输入信息为空'
+#             else:
+#                 res=llm_response(message)                           
+#                 nerfreal.put_msg_txt(res)
 
 #####webrtc###############################
 pcs = set()
@@ -401,7 +401,7 @@ if __name__ == '__main__':
     print('start websocket server')
     #app.on_shutdown.append(on_shutdown)
     #app.router.add_post("/offer", offer)
-    server = pywsgi.WSGIServer(('0.0.0.0', 8000), app, handler_class=WebSocketHandler)
-    server.serve_forever()
+    # server = pywsgi.WSGIServer(('0.0.0.0', 8000), app, handler_class=WebSocketHandler)
+    # server.serve_forever()
     
     
